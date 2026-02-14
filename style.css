@@ -426,3 +426,14 @@ h1 span {
   color: var(--text-dim);
 }
 .footer img { height: 20px; }
+.footer-links { display: flex; gap: 1rem; }
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: var(--text); }
+.footer-star:hover { color: #f5c518; }
