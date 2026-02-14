@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SubStamper is a free, open-source browser-based SRT subtitle timing tool. Upload MP3, paste lyrics, tap spacebar to sync — download .srt. No server, no signup, works offline.">
+<meta name="keywords" content="SRT editor, subtitle timing tool, subtitle generator, lyric sync tool, SRT file creator, free subtitle editor, browser subtitle tool, offline SRT generator, music video subtitles, lyric video creator, open source subtitle tool, SubStamper">
+<meta name="author" content="leplik">
+<meta property="og:title" content="SubStamper — Free Browser-Based SRT Subtitle Timing Tool">
+<meta property="og:description" content="Upload MP3, paste lyrics, tap spacebar to time each line, download .srt. Zero dependencies, works offline, free forever.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leplik.github.io/srt-space/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SubStamper — Free SRT Subtitle Timing Tool">
+<meta name="twitter:description" content="Browser-based subtitle timing. Upload audio, paste lyrics, tap spacebar, download .srt. No server, no signup, no nonsense.">
+<title>SubStamper — Free Browser-Based SRT Subtitle Timing Tool</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>SubStamper <span>/ subtitle timing tool</span></h1>
+
+  <!-- Setup Screen -->
+  <div id="screen-setup" class="screen active">
+    <div id="drop-zone" class="drop-zone">
+      <p id="drop-label">Drop an MP3 here or click to browse</p>
+      <input type="file" id="file-input" accept="audio/*">
+    </div>
+
+    <textarea
+      id="lyrics-input"
+      class="lyrics-area"
+      placeholder="Paste your lyrics here — one line per subtitle.&#10;&#10;Blank lines will be ignored."
+      spellcheck="false"
+    ></textarea>
+
+    <button id="btn-start" class="btn btn-primary" disabled>Start Timing</button>
+  </div>
+
+  <!-- Countdown Overlay -->
+  <div id="countdown-overlay" class="countdown-overlay">
+    <div class="countdown-number" id="countdown-num">3</div>
+    <div class="countdown-info">Hold <kbd>Space</kbd> = mark start &nbsp;|&nbsp; Release = mark end &amp; next line</div>
+  </div>
+
+  <!-- Timing Screen -->
+  <div id="screen-timing" class="screen">
+    <div class="timing-hint">
+      <kbd>Space</kbd> hold = mark start &nbsp;|&nbsp; release = mark end &amp; advance
+    </div>
+
+    <div class="player">
+      <button id="play-btn" class="play-btn" title="Restart">
+        <svg id="icon-play" viewBox="0 0 16 16" style="display:none"><polygon points="4,2 14,8 4,14"/></svg>
+        <svg id="icon-pause" viewBox="0 0 16 16" style="display:none">
+          <rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/>
+        </svg>
+        <svg id="icon-restart" viewBox="0 0 16 16">
+          <path d="M8 2.5V0L4.5 3 8 6V3.5a4.5 4.5 0 1 1-4.5 4.5H2A6 6 0 1 0 8 2.5z"/>
+        </svg>
+      </button>
+      <div class="player-track">
+        <input type="range" id="seek-bar" class="seek-bar" min="0" max="1000" value="0">
+        <div class="player-time">
+          <span id="time-current">00:00:00,000</span>
+          <span id="time-duration">00:00:00,000</span>
+        </div>
+      </div>
+    </div>
+
+    <ul id="lyrics-list" class="lyrics-list"></ul>
+  </div>
+
+  <!-- Preview Screen -->
+  <div id="screen-preview" class="screen">
+    <div id="retime-banner" class="retime-banner">
+      Re-timing line — hold <kbd>Space</kbd> to mark start, release to mark end. Press <kbd>Esc</kbd> to cancel.
+    </div>
+    <p class="retime-hint">Click any row to re-time that line (audio seeks 5s before its start).</p>
+
+    <table class="preview-table">
+      <thead>
+        <tr><th>#</th><th>Start</th><th>End</th><th>Lyrics</th></tr>
+      </thead>
+      <tbody id="preview-body"></tbody>
+    </table>
+
+    <div class="preview-actions">
+      <button id="btn-download" class="btn btn-primary">Download .srt</button>
+      <button id="btn-back" class="btn btn-secondary">Back to Setup</button>
+    </div>
+
+    <div id="preview-current-line" class="preview-current-line"></div>
+
+    <div class="player" style="margin-top:0">
+      <button id="play-btn-2" class="play-btn" title="Play / Pause">
+        <svg class="pp-play" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+        <svg class="pp-pause" viewBox="0 0 16 16" style="display:none">
+          <rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/>
+        </svg>
+      </button>
+      <div class="player-track">
+        <input type="range" id="seek-bar-2" class="seek-bar" min="0" max="1000" value="0">
+        <div class="player-time">
+          <span id="time-current-2">00:00:00,000</span>
+          <span id="time-duration-2">00:00:00,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
