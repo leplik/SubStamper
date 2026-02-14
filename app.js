@@ -35,6 +35,14 @@ const timeCur = $('#time-current');
 const timeDur = $('#time-duration');
 const lyricsList = $('#lyrics-list');
 
+const stripCheckbox = $('#strip-punctuation');
+const keepExclamationLabel = $('#keep-exclamation-label');
+const keepQuestionLabel = $('#keep-question-label');
+const keepExclamation = $('#keep-exclamation');
+const keepQuestion = $('#keep-question');
+const stripPreview = $('#strip-preview');
+const stripList = $('#strip-preview-list');
+
 const previewBody = $('#preview-body');
 const btnDownload = $('#btn-download');
 const btnBack = $('#btn-back');
@@ -144,6 +152,57 @@ function loadAudioFile(file) {
 
 lyricsInput.addEventListener('input', updateStartBtn);
 
+// ===== Strip Punctuation Preview =====
+
+function buildStripRegex() {
+  let chars = '\\s.,\\-–—…:;\'"»«)}\\]';
+  if (!keepExclamation.checked) chars += '!';
+  if (!keepQuestion.checked) chars += '?';
+  return new RegExp('[' + chars + ']+$');
+}
+
+let stripDebounce = null;
+function renderStripPreview() {
+  if (!stripCheckbox.checked) {
+    stripPreview.style.display = 'none';
+    keepExclamationLabel.style.display = 'none';
+    keepQuestionLabel.style.display = 'none';
+    return;
+  }
+  stripPreview.style.display = '';
+  keepExclamationLabel.style.display = '';
+  keepQuestionLabel.style.display = '';
+  const re = buildStripRegex();
+  const raw = lyricsInput.value.split('\n');
+  const parsed = raw
+    .map(l => l.trimEnd())
+    .filter(l => l.trim().length > 0);
+
+  stripList.innerHTML = '';
+  parsed.forEach((text, i) => {
+    const li = document.createElement('li');
+    const match = text.match(re);
+    const numSpan = `<span class="line-num">${i + 1}</span>`;
+    if (match) {
+      const clean = text.slice(0, match.index);
+      li.innerHTML = numSpan +
+        `<span>${escapeHtml(clean)}<span class="strip-removed">${escapeHtml(match[0])}</span></span>`;
+    } else {
+      li.innerHTML = numSpan + `<span>${escapeHtml(text)}</span>`;
+    }
+    stripList.appendChild(li);
+  });
+}
+
+stripCheckbox.addEventListener('change', renderStripPreview);
+keepExclamation.addEventListener('change', renderStripPreview);
+keepQuestion.addEventListener('change', renderStripPreview);
+lyricsInput.addEventListener('input', () => {
+  clearTimeout(stripDebounce);
+  stripDebounce = setTimeout(renderStripPreview, 200);
+});
+
+
 // ===== Timing =====
 
 function renderLyricsList() {
@@ -199,10 +258,15 @@ function restartTiming() {
 
 btnStart.addEventListener('click', () => {
   const raw = lyricsInput.value.split('\n');
+  const shouldStrip = stripCheckbox.checked;
+  const stripRe = buildStripRegex();
   lines = raw
     .map(l => l.trimEnd())
     .filter(l => l.trim().length > 0)
-    .map(text => ({ text, startTime: null, endTime: null }));
+    .map(text => {
+      if (shouldStrip) text = text.replace(stripRe, '');
+      return { text, startTime: null, endTime: null };
+    });
 
   if (lines.length === 0) return;
 

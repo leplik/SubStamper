@@ -42,6 +42,21 @@
       spellcheck="false"
     ></textarea>
 
+    <div id="strip-options" class="strip-options">
+      <label class="option-label">
+        <input type="checkbox" id="strip-punctuation"> Strip trailing punctuation
+      </label>
+      <label class="option-label option-sub" id="keep-exclamation-label" style="display:none">
+        <input type="checkbox" id="keep-exclamation"> Keep <strong>!</strong>
+      </label>
+      <label class="option-label option-sub" id="keep-question-label" style="display:none">
+        <input type="checkbox" id="keep-question"> Keep <strong>?</strong>
+      </label>
+    </div>
+    <div id="strip-preview" class="strip-preview" style="display:none">
+      <ul id="strip-preview-list" class="strip-preview-list"></ul>
+    </div>
+
     <button id="btn-start" class="btn btn-primary" disabled>Start Timing</button>
   </div>
 
