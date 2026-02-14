@@ -555,10 +555,13 @@ btnDownload.addEventListener('click', () => {
 
 // ===== Back to Setup =====
 
-btnBack.addEventListener('click', () => {
+function goToSetup() {
   appState = 'idle';
   audio.pause();
   cancelAnimationFrame(animFrame);
   retimeBanner.classList.remove('active');
   showScreen('setup');
-});
+}
+
+btnBack.addEventListener('click', goToSetup);
+$('#btn-back-setup').addEventListener('click', goToSetup);
