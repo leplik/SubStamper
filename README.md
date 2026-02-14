@@ -58,7 +58,7 @@ So I built SubStamper. It does one thing. It does it well. You listen to audio, 
 - **Dark theme** — easy on the eyes at 2 AM when you're on your fifth video (cyan accents because we have *taste*)
 - **Zero dependencies** — no npm, no webpack, no node_modules black hole. Three files: HTML, CSS, JS
 - **Fully offline** — works without internet once the page is loaded. Your audio never leaves your browser
-- **No server, no accounts** — it's a static page. Your audio and text never leave your browser. A [HITS](https://hits.seeyoufarm.com) badge counts page visits — no cookies, no personal data collected
+- **No server, no accounts** — it's a static page. Your audio and text never leave your browser. A [visitor badge](https://visitorbadge.io) counts page visits — no cookies, no personal data collected
 
 ---
 
