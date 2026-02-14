@@ -314,7 +314,7 @@ function startPlayerLoop() {
     if (appState === 'retiming' && retimeAutoPause != null && audio.currentTime >= retimeAutoPause) {
       audio.pause();
     }
-    if (appState === 'preview' && !audio.paused) {
+    if (appState === 'preview') {
       updatePreviewHighlight();
     }
     updatePlayIcons();
@@ -362,9 +362,7 @@ seekBar2.addEventListener('input', () => {
 
 audio.addEventListener('pause', () => {
   if (appState === 'preview') {
-    const rows = previewBody.children;
-    for (let i = 0; i < rows.length; i++) rows[i].classList.remove('active-playback');
-    previewCurrentLine.classList.remove('visible');
+    updatePreviewHighlight();
   }
 });
 
@@ -387,22 +385,33 @@ function renderPreview() {
 function updatePreviewHighlight() {
   const t = audio.currentTime;
   const rows = previewBody.children;
-  let foundIdx = -1;
+  let activeIdx = -1;
+  let nearestIdx = -1;
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].startTime != null && lines[i].endTime != null &&
         t >= lines[i].startTime && t < lines[i].endTime) {
-      foundIdx = i;
+      activeIdx = i;
       break;
+    }
+    if (lines[i].endTime != null && t >= lines[i].endTime) {
+      nearestIdx = i;
     }
   }
   for (let i = 0; i < rows.length; i++) {
-    rows[i].classList.toggle('active-playback', i === foundIdx);
+    rows[i].classList.toggle('active-playback', i === activeIdx);
   }
-  if (foundIdx >= 0) {
-    previewCurrentLine.textContent = lines[foundIdx].text;
+  if (activeIdx >= 0) {
+    previewCurrentLine.textContent = lines[activeIdx].text;
     previewCurrentLine.classList.add('visible');
+    previewCurrentLine.classList.add('active');
+  } else if (nearestIdx >= 0) {
+    previewCurrentLine.textContent = lines[nearestIdx].text;
+    previewCurrentLine.classList.add('visible');
+    previewCurrentLine.classList.remove('active');
   } else {
-    previewCurrentLine.classList.remove('visible');
+    previewCurrentLine.textContent = '';
+    previewCurrentLine.classList.add('visible');
+    previewCurrentLine.classList.remove('active');
   }
 }
 

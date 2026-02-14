@@ -397,17 +397,21 @@ h1 span {
 
 .preview-current-line {
   background: var(--bg-surface);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--border);
   border-radius: 0 6px 6px 0;
   padding: 0.6rem 1rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
   font-size: 0.9rem;
   min-height: 2.4rem;
-  color: var(--text);
-  opacity: 0;
-  transition: opacity 0.15s;
+  color: var(--text-dim);
+  text-align: center;
+  transition: color 0.15s, border-color 0.15s;
 }
-.preview-current-line.visible { opacity: 1; }
+.preview-current-line.active {
+  border-left-color: var(--accent);
+  color: var(--text);
+}
 
 /* ===== Footer ===== */
 
