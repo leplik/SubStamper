@@ -408,3 +408,17 @@ h1 span {
   transition: opacity 0.15s;
 }
 .preview-current-line.visible { opacity: 1; }
+
+/* ===== Footer ===== */
+
+.footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.footer img { height: 20px; }
