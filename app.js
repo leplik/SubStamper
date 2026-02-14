@@ -11,6 +11,7 @@ let retimeOldStart = null;
 let retimeOldEnd = null;
 let retimeStamped = false;
 let animFrame = null;
+let audioFileName = '';
 
 // ===== DOM =====
 
@@ -136,6 +137,7 @@ function loadAudioFile(file) {
   const fn = document.createElement('span');
   fn.className = 'filename';
   fn.textContent = file.name;
+  audioFileName = file.name.replace(/\.[^.]+$/, '');
   dropLabel.appendChild(fn);
   updateStartBtn();
 }
@@ -480,7 +482,7 @@ btnDownload.addEventListener('click', () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'subtitles.srt';
+  a.download = (audioFileName || 'subtitles') + '.srt';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
