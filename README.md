@@ -3,14 +3,14 @@
 **The subtitle timing tool that doesn't waste your time.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Stars](https://img.shields.io/github/stars/leplik/srt-space.svg?style=social)](https://github.com/leplik/srt-space/stargazers)
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://leplik.github.io/srt-space/)
+[![GitHub Stars](https://img.shields.io/github/stars/leplik/SubStamper.svg?style=social)](https://github.com/leplik/SubStamper/stargazers)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://leplik.github.io/SubStamper/)
 ![No Dependencies](https://img.shields.io/badge/dependencies-0-blue)
 ![HTML/CSS/JS](https://img.shields.io/badge/stack-HTML%20%2B%20CSS%20%2B%20JS-orange)
 
 ## Try It Now
 
-**[Launch SubStamper](https://leplik.github.io/srt-space/)** — no download, no install, no account. Just open it and get to work.
+**[Launch SubStamper](https://leplik.github.io/SubStamper/)** — no download, no install, no account. Just open it and get to work.
 
 ---
 
@@ -64,7 +64,7 @@ So I built SubStamper. It does one thing. It does it well. You listen to audio, 
 
 ## How to Use
 
-1. **Open SubStamper** — [launch it](https://leplik.github.io/srt-space/) or open `index.html` locally
+1. **Open SubStamper** — [launch it](https://leplik.github.io/SubStamper/) or open `index.html` locally
 2. **Load audio** — drag an MP3 onto the drop zone (or click to browse)
 3. **Paste lyrics** — one line per subtitle in the text area. Blank lines are ignored
 4. **Click "Start Timing"** — a 3-2-1 countdown kicks in
