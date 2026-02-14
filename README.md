@@ -157,6 +157,13 @@ Do whatever you want with it. Just don't blame me if your subtitles are off by a
 
 ---
 
+## Acknowledgments
+
+- **[DistroKid](https://distrokid.com)** — for the inspiration and ideas that sparked this tool
+- **[Claude Code](https://claude.ai/claude-code)** — for turning caffeine-fueled ranting into actual working code
+
+---
+
 <sub>
 <b>SubStamper</b> — free SRT editor | subtitle timing tool | subtitle generator | lyric sync tool | SRT file creator | free subtitle editor | browser subtitle tool | offline SRT generator | music video subtitles | lyric video creator | open source subtitle tool | karaoke timing | subtitle synchronization | lyrics to SRT converter | spacebar subtitle stamper | free lyric timing app | AI music video subtitles | SRT subtitle maker online free
 </sub>
