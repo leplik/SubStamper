@@ -482,6 +482,25 @@ h1 span {
   color: var(--text);
 }
 
+/* ===== Mobile Banner ===== */
+
+.mobile-banner {
+  display: none;
+  background: rgba(255, 183, 77, 0.1);
+  border: 1px solid #ffb74d;
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: #ffb74d;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.is-mobile .mobile-banner {
+  display: block;
+}
+
 /* ===== Footer ===== */
 
 .footer {

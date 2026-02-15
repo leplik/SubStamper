@@ -13,6 +13,15 @@ let retimeStamped = false;
 let animFrame = null;
 let audioFileName = '';
 
+// ===== Mobile Detection =====
+
+const mobileQuery = window.matchMedia('(max-width: 768px)');
+function applyMobileClass(e) {
+  document.body.classList.toggle('is-mobile', e.matches);
+}
+applyMobileClass(mobileQuery);
+mobileQuery.addEventListener('change', applyMobileClass);
+
 // ===== DOM =====
 
 const $ = (s) => document.querySelector(s);
