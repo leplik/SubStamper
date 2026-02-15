@@ -65,6 +65,7 @@ const timeDur2 = $('#time-duration-2');
 
 const countdownOverlay = $('#countdown-overlay');
 const countdownNum = $('#countdown-num');
+const mobileTapBtn = $('#mobile-tap-btn');
 
 // ===== Helpers =====
 
@@ -294,6 +295,84 @@ btnStart.addEventListener('click', () => {
   });
 });
 
+// ===== Stamp Logic (shared by keyboard & mobile tap) =====
+
+function stampDown() {
+  if (appState === 'timing') {
+    if (spaceDown) return;
+    spaceDown = true;
+    lines[currentLineIdx].startTime = audio.currentTime;
+    const tsEl = document.getElementById('line-ts-' + currentLineIdx);
+    if (tsEl) tsEl.textContent = formatSRT(audio.currentTime) + ' →';
+    updateLyricsHighlight();
+    mobileTapBtn.classList.add('recording');
+    mobileTapBtn.textContent = 'Recording…';
+  } else if (appState === 'retiming') {
+    if (spaceDown) return;
+    spaceDown = true;
+    retimeStamped = true;
+    lines[retimeIdx].startTime = audio.currentTime;
+    const row = previewBody.children[retimeIdx];
+    if (row) row.children[1].textContent = formatSRT(audio.currentTime);
+    highlightRetimeRow();
+  }
+}
+
+function stampUp() {
+  if (appState === 'timing') {
+    if (!spaceDown) return;
+    spaceDown = false;
+    lines[currentLineIdx].endTime = audio.currentTime;
+    const tsEl = document.getElementById('line-ts-' + currentLineIdx);
+    if (tsEl) {
+      tsEl.textContent =
+        formatSRT(lines[currentLineIdx].startTime) + ' → ' + formatSRT(audio.currentTime);
+    }
+    currentLineIdx++;
+
+    mobileTapBtn.classList.remove('recording');
+    mobileTapBtn.textContent = 'Hold to Time';
+
+    if (currentLineIdx >= lines.length) {
+      appState = 'preview';
+      audio.pause();
+      cancelAnimationFrame(animFrame);
+      showScreen('preview');
+      renderPreview();
+      startPlayerLoop();
+    } else {
+      updateLyricsHighlight();
+      scrollToLine(currentLineIdx);
+    }
+  } else if (appState === 'retiming') {
+    if (!spaceDown) return;
+    spaceDown = false;
+    lines[retimeIdx].endTime = audio.currentTime;
+    const row = previewBody.children[retimeIdx];
+    if (row) row.children[2].textContent = formatSRT(audio.currentTime);
+    audio.pause();
+    appState = 'preview';
+    retimeAutoPause = null;
+    retimeBanner.classList.remove('active');
+    renderPreview();
+    updatePlayIcons();
+  }
+}
+
+// ===== Mobile Tap Button =====
+
+mobileTapBtn.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  stampDown();
+}, { passive: false });
+
+mobileTapBtn.addEventListener('touchend', (e) => {
+  e.preventDefault();
+  stampUp();
+}, { passive: false });
+
+mobileTapBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
 // ===== Spacebar Events =====
 
 document.addEventListener('keydown', (e) => {
@@ -309,65 +388,19 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
-  if (appState === 'timing') {
+  if (appState === 'timing' || appState === 'retiming') {
     e.preventDefault();
-    if (e.repeat || spaceDown) return;
-    spaceDown = true;
-    lines[currentLineIdx].startTime = audio.currentTime;
-    const tsEl = document.getElementById('line-ts-' + currentLineIdx);
-    if (tsEl) tsEl.textContent = formatSRT(audio.currentTime) + ' →';
-    updateLyricsHighlight();
-  } else if (appState === 'retiming') {
-    e.preventDefault();
-    if (e.repeat || spaceDown) return;
-    spaceDown = true;
-    retimeStamped = true;
-    lines[retimeIdx].startTime = audio.currentTime;
-    const row = previewBody.children[retimeIdx];
-    if (row) row.children[1].textContent = formatSRT(audio.currentTime);
-    highlightRetimeRow();
+    if (e.repeat) return;
+    stampDown();
   }
 });
 
 document.addEventListener('keyup', (e) => {
   if (e.code !== 'Space') return;
 
-  if (appState === 'timing') {
+  if (appState === 'timing' || appState === 'retiming') {
     e.preventDefault();
-    if (!spaceDown) return;
-    spaceDown = false;
-    lines[currentLineIdx].endTime = audio.currentTime;
-    const tsEl = document.getElementById('line-ts-' + currentLineIdx);
-    if (tsEl) {
-      tsEl.textContent =
-        formatSRT(lines[currentLineIdx].startTime) + ' → ' + formatSRT(audio.currentTime);
-    }
-    currentLineIdx++;
-
-    if (currentLineIdx >= lines.length) {
-      appState = 'preview';
-      audio.pause();
-      cancelAnimationFrame(animFrame);
-      showScreen('preview');
-      renderPreview();
-      startPlayerLoop();
-    } else {
-      updateLyricsHighlight();
-      scrollToLine(currentLineIdx);
-    }
-  } else if (appState === 'retiming') {
-    e.preventDefault();
-    if (!spaceDown) return;
-    spaceDown = false;
-    lines[retimeIdx].endTime = audio.currentTime;
-    const row = previewBody.children[retimeIdx];
-    if (row) row.children[2].textContent = formatSRT(audio.currentTime);
-    audio.pause();
-    appState = 'preview';
-    retimeAutoPause = null;
-    retimeBanner.classList.remove('active');
-    renderPreview();
-    updatePlayIcons();
+    stampUp();
   }
 });
 
@@ -452,7 +485,9 @@ function renderPreview() {
       `<td class="ts">${formatSRT(line.startTime)}</td>` +
       `<td class="ts">${formatSRT(line.endTime)}</td>` +
       `<td>${escapeHtml(line.text)}</td>`;
-    tr.addEventListener('click', () => startRetime(i));
+    if (!mobileQuery.matches) {
+      tr.addEventListener('click', () => startRetime(i));
+    }
     previewBody.appendChild(tr);
   });
 }

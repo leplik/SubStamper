@@ -29,7 +29,7 @@
   <h1>SubStamper <span>/ subtitle timing tool</span></h1>
 
   <div class="mobile-banner">
-    This tool requires a keyboard (spacebar) for timing. Please open on a desktop browser.
+    For the best experience, use a desktop browser. Post-editing is not available on mobile.
   </div>
 
   <!-- Setup Screen -->
@@ -67,13 +67,17 @@
   <!-- Countdown Overlay -->
   <div id="countdown-overlay" class="countdown-overlay">
     <div class="countdown-number" id="countdown-num">3</div>
-    <div class="countdown-info">Hold <kbd>Space</kbd> = mark start &nbsp;|&nbsp; Release = mark end &amp; next line</div>
+    <div class="countdown-info">
+      <span class="desktop-hint">Hold <kbd>Space</kbd> = mark start &nbsp;|&nbsp; Release = mark end &amp; next line</span>
+      <span class="mobile-hint">Tap &amp; hold = mark start &nbsp;|&nbsp; Release = mark end &amp; next line</span>
+    </div>
   </div>
 
   <!-- Timing Screen -->
   <div id="screen-timing" class="screen">
     <div class="timing-hint">
-      <kbd>Space</kbd> hold = mark start &nbsp;|&nbsp; release = mark end &amp; advance
+      <span class="desktop-hint"><kbd>Space</kbd> hold = mark start &nbsp;|&nbsp; release = mark end &amp; advance</span>
+      <span class="mobile-hint">Tap &amp; hold = mark start &nbsp;|&nbsp; release = mark end &amp; advance</span>
     </div>
 
     <div class="player">
@@ -96,6 +100,7 @@
     </div>
 
     <ul id="lyrics-list" class="lyrics-list"></ul>
+    <button id="mobile-tap-btn" class="mobile-tap-btn">Hold to Time</button>
     <button id="btn-back-setup" class="btn btn-secondary" style="margin-top:1rem">Back to Setup</button>
   </div>
 

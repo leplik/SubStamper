@@ -384,6 +384,8 @@ h1 span {
 .countdown-info {
   font-size: 0.9rem;
   color: var(--text-dim);
+  text-align: center;
+  padding: 0 1.5rem;
 }
 
 .countdown-info kbd {
@@ -482,7 +484,7 @@ h1 span {
   color: var(--text);
 }
 
-/* ===== Mobile Banner ===== */
+/* ===== Mobile ===== */
 
 .mobile-banner {
   display: none;
@@ -499,6 +501,83 @@ h1 span {
 
 .is-mobile .mobile-banner {
   display: block;
+}
+
+/* Hint toggling */
+.mobile-hint { display: none; }
+.is-mobile .mobile-hint { display: inline; }
+.is-mobile .desktop-hint { display: none; }
+
+/* Mobile tap button */
+.mobile-tap-btn {
+  display: none;
+  width: 100%;
+  height: 80px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.1s;
+  margin-top: auto;
+}
+
+.is-mobile .mobile-tap-btn {
+  display: flex;
+}
+
+.mobile-tap-btn.recording {
+  background: var(--recording);
+  color: #fff;
+}
+
+/* Mobile timing screen — fixed full-viewport layout */
+.is-mobile #screen-timing.active {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  z-index: 10;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.is-mobile #screen-timing .lyrics-list {
+  flex: 1;
+  max-height: none;
+  min-height: 0;
+}
+
+.is-mobile #screen-timing .timing-hint {
+  margin-bottom: 0.8rem;
+}
+
+.is-mobile #screen-timing .player {
+  margin-bottom: 0.8rem;
+}
+
+.is-mobile #screen-timing #btn-back-setup {
+  display: none;
+}
+
+/* Mobile preview — simplified: just buttons */
+.is-mobile #screen-preview .retime-hint,
+.is-mobile #screen-preview .retime-banner,
+.is-mobile #screen-preview .preview-table,
+.is-mobile #screen-preview .preview-current-line,
+.is-mobile #screen-preview .player {
+  display: none !important;
 }
 
 /* ===== Footer ===== */
