@@ -6,6 +6,8 @@
 <meta name="description" content="SubStamper is a free, open-source browser-based SRT subtitle timing tool. Upload MP3, paste lyrics, tap spacebar to sync — download .srt. No server, no signup, works offline.">
 <meta name="keywords" content="SRT editor, subtitle timing tool, subtitle generator, lyric sync tool, SRT file creator, free subtitle editor, browser subtitle tool, offline SRT generator, music video subtitles, lyric video creator, open source subtitle tool, SubStamper">
 <meta name="author" content="leplik">
+<link rel="canonical" href="https://leplik.github.io/SubStamper/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:title" content="SubStamper — Free Browser-Based SRT Subtitle Timing Tool">
 <meta property="og:description" content="Upload MP3, paste lyrics, tap spacebar to time each line, download .srt. Zero dependencies, works offline, free forever.">
 <meta property="og:type" content="website">
@@ -23,10 +25,112 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SubStamper",
+  "url": "https://leplik.github.io/SubStamper/",
+  "description": "Free, open-source browser-based SRT subtitle timing tool. Upload audio, paste lyrics, tap spacebar to sync timestamps, download .srt files. No server, no signup, works offline.",
+  "applicationCategory": "MultimediaApplication",
+  "applicationSubCategory": "Subtitle Editor",
+  "operatingSystem": "Web Browser",
+  "isAccessibleForFree": true,
+  "browserRequirements": "Requires a modern web browser with Web Audio API support",
+  "softwareVersion": "1.0",
+  "inLanguage": "en",
+  "license": "https://opensource.org/licenses/MIT",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "leplik",
+    "url": "https://github.com/leplik"
+  },
+  "screenshot": "https://leplik.github.io/SubStamper/assets/og-banner.webp",
+  "featureList": [
+    "Spacebar-driven subtitle timing",
+    "Drag-and-drop audio upload",
+    "Real-time timestamp preview",
+    "Re-time individual lines",
+    "Live subtitle playback preview",
+    "Standard SRT file export",
+    "Works completely offline",
+    "Zero dependencies",
+    "No account required",
+    "Open source (MIT license)"
+  ],
+  "keywords": "SRT editor, subtitle timing tool, subtitle generator, lyric sync tool, SRT file creator, free subtitle editor, browser subtitle tool, offline SRT generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is SubStamper?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SubStamper is a free, open-source browser-based SRT subtitle timing tool. You upload audio, paste lyrics, hold the spacebar to mark the start and end of each subtitle line in real time, then download a standards-compliant .srt file. No server, no signup, no installation required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I create SRT subtitles with SubStamper?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open SubStamper in your browser. Drag and drop an MP3 or audio file onto the page. Paste your lyrics or subtitle text, one line per subtitle. Click Start Timing, then hold the spacebar when each line begins and release when it ends. The tool advances automatically. When finished, click Download .srt to save your subtitle file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is SubStamper really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, SubStamper is 100% free and open source under the MIT license. There are no hidden costs, no premium tiers, no signup required, and no usage limits. It runs entirely in your browser with zero server dependencies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does SubStamper work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Once the page is loaded, SubStamper works completely offline. Your audio files and text never leave your browser. Everything is processed locally using the Web Audio API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What audio formats does SubStamper support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SubStamper accepts any audio format your browser supports, including MP3, WAV, OGG, FLAC, M4A, and AAC. Simply drag and drop or click to browse for your file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I fix a single subtitle line without re-timing everything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In the preview screen, click any row to re-time just that line. The audio automatically seeks to 5 seconds before the line starts, so you can restamp it without starting over."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="container">
   <h1>SubStamper <span>/ subtitle timing tool</span></h1>
+  <p class="hero-text">
+    Free, open-source SRT subtitle timing tool that runs entirely in your browser.
+    Upload audio, paste lyrics, tap spacebar to sync each line, and download a standard <code>.srt</code> file.
+    No server, no signup, no installation &mdash; works offline.
+  </p>
 
   <div class="mobile-banner">
     For the best experience, use a desktop browser. Post-editing is not available on mobile.
@@ -141,6 +245,45 @@
       </div>
     </div>
   </div>
+
+  <section class="faq-section" id="faq">
+    <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+    <details class="faq-item">
+      <summary>What is SubStamper?</summary>
+      <p>SubStamper is a free, open-source browser-based SRT subtitle timing tool. Upload audio, paste your lyrics or dialogue, hold the spacebar to mark start and end times for each line, then download a standard .srt subtitle file. No server, no signup, no installation needed. It works completely offline once loaded.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>How do I create SRT subtitles?</summary>
+      <p>Open SubStamper and drag an MP3 (or any audio file) onto the drop zone. Paste your subtitle text, one line per subtitle. Click "Start Timing" and hold the spacebar when each line begins &mdash; release when it ends. The tool advances to the next line automatically. Once all lines are timed, review your timestamps and click "Download .srt" to save.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is SubStamper really free?</summary>
+      <p>Yes, 100% free and open source under the MIT license. No hidden costs, no premium tier, no account required, no usage limits. The source code is available on <a href="https://github.com/leplik/SubStamper" target="_blank" rel="noopener">GitHub</a>.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Does it work offline?</summary>
+      <p>Yes. Once the page loads, SubStamper works without any internet connection. Your audio and text are processed entirely in your browser using the Web Audio API &mdash; nothing is ever sent to a server.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What audio formats are supported?</summary>
+      <p>SubStamper accepts any format your browser supports: MP3, WAV, OGG, FLAC, M4A, AAC, and more. Just drag and drop or click to browse.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I re-time a single line without starting over?</summary>
+      <p>Yes. In the preview screen, click any row to re-time just that line. The audio seeks 5 seconds before the line's start time so you can restamp it precisely.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What makes SubStamper different from other subtitle tools?</summary>
+      <p>SubStamper is designed for one task: timing subtitles quickly. No bloated timeline editors, no account walls, no AI that guesses your timestamps wrong. It's three files (HTML, CSS, JS) with zero dependencies. Hold spacebar, release, done. It's the fastest way to create an SRT file from scratch.</p>
+    </details>
+  </section>
 
   <footer class="footer">
     <span>SubStamper</span>

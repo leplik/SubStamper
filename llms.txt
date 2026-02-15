@@ -1,0 +1,34 @@
+# SubStamper
+
+> SubStamper is a free, open-source browser-based SRT subtitle timing tool. Upload audio, paste lyrics, hold spacebar to time each line, download a standard .srt file. No server, no signup, works offline. Zero dependencies.
+
+SubStamper runs entirely in the browser using vanilla HTML, CSS, and JavaScript. It is designed for quick, manual subtitle timing — not AI-guessed timestamps. Users hold the spacebar while listening to audio to mark the exact start and end of each subtitle line. The tool automatically advances to the next line and produces a standards-compliant SRT file.
+
+## Key Features
+
+- Spacebar-driven timing: hold to mark start, release to mark end
+- Drag-and-drop audio upload (MP3, WAV, OGG, FLAC, M4A, AAC)
+- Real-time timestamp preview with auto-scroll
+- Re-time individual lines without restarting
+- Live subtitle playback preview
+- Instant .srt file download
+- Works completely offline after page load
+- No accounts, no server, no tracking, no dependencies
+- Open source under MIT license
+
+## How to Use
+
+1. Open https://leplik.github.io/SubStamper/
+2. Drag an audio file onto the drop zone
+3. Paste subtitle text (one line per subtitle)
+4. Click "Start Timing" — a 3-2-1 countdown begins
+5. Hold spacebar when a line starts, release when it ends
+6. Review timestamps in the preview screen
+7. Click any row to re-time a single line
+8. Click "Download .srt" to save the file
+
+## Links
+
+- [SubStamper Web App](https://leplik.github.io/SubStamper/): Launch the tool
+- [GitHub Repository](https://github.com/leplik/SubStamper): Source code and documentation
+- [MIT License](https://github.com/leplik/SubStamper/blob/main/LICENSE): License terms
